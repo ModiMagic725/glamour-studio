@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book your luxury appointment at Glamour Studio.">
+    <meta name="theme-color" content="#3b0f2b">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+    <title>Book Appointment — Glamour Studio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <!-- AOS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/booking.css">
+
+    
+
+
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader">
+    <div class="preloader-inner">
+        <span class="preloader-logo">GLAMOUR</span>
+        <span class="preloader-tagline">Studio</span>
+        <div class="preloader-bar"></div>
+    </div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar navbar-glamour navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand navbar-brand-glamour" href="index.html">
+            GLAMOUR<span class="brand-sub">Beauty Studio</span>
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                <li class="nav-item">
+                    <a class="nav-link " href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="services.html">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="team.html">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="products.html">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="gallery.html">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="contact.html">Contact</a>
+                </li>
+
+                <!-- Admin Panel Link -->
+                <li class="nav-item ms-lg-2">
+                    <a href="/admin-panel/" target="_blank"
+                       style="font-family:var(--font-sans); font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:rgba(247,231,206,0.4) !important; padding:6px 10px !important; border:1px solid rgba(247,231,206,0.1); transition:var(--transition);"
+                       onmouseover="this.style.color='rgba(196,139,159,0.8)'; this.style.borderColor='rgba(196,139,159,0.3)'"
+                       onmouseout="this.style.color='rgba(247,231,206,0.4)'; this.style.borderColor='rgba(247,231,206,0.1)'" rel="noopener noreferrer">
+                        <i class="bi bi-shield-lock fs-6" style="font-size:0.7rem;"></i> 
+                    </a>
+                </li>
+
+                <!-- ===== DYNAMIC AUTH SECTION ===== -->
+                <!-- Logged In (shown by JS when a customer is signed in) -->
+                <li class="nav-item ms-lg-3 nav-customer-dropdown" id="customerNavItem" data-auth="in">
+                    <button class="btn-nav-customer" id="customerNavBtn" onclick="toggleCustomerMenu()" aria-label="Account menu">
+                        <span class="customer-dot"></span>
+                        <span id="navCustomerName"></span>
+                        <i class="bi bi-chevron-down" style="font-size:0.65rem;"></i>
+                    </button>
+                    <div class="customer-nav-menu" id="customerNavMenu">
+                        <div class="menu-customer-name"><span id="menuCustomerName"></span><small>Glamour Member</small></div>
+                        <a href="booking.html"><i class="bi bi-calendar-plus"></i> Book Appointment</a>
+                        <a href="booking_history.html"><i class="bi bi-clock-history"></i> My Bookings</a>
+                        <a href="#" class="menu-logout" onclick="logoutCustomer(); return false;"><i class="bi bi-box-arrow-right"></i> Sign Out</a>
+                    </div>
+                </li>
+                <li class="nav-item ms-lg-1" data-auth="in">
+                    <a class="nav-link btn-navbar-book active" href="booking.html">Book Now</a>
+                </li>
+                <!-- Not Logged In -->
+                <li class="nav-item ms-lg-2" data-auth="out">
+                    <button class="btn-nav-login" onclick="openAuthModal('login')"><i class="bi bi-person"></i> Login</button>
+                </li>
+                <li class="nav-item ms-lg-1" data-auth="out">
+                    <a class="nav-link btn-navbar-book" onclick="openAuthModal('login'); return false;" href="#">Book Now</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ============ AUTH MODAL ============ -->
+<div class="glamour-auth-backdrop" id="authBackdrop">
+    <div class="glamour-auth-bg" onclick="closeAuthModal()"></div>
+    <div class="glamour-auth-box">
+        <!-- Header -->
+        <div class="auth-modal-header">
+            <span class="auth-modal-logo">✦ Glamour Studio</span>
+            <h2 class="auth-modal-title" id="authModalTitle">Welcome Back</h2>
+            <p class="auth-modal-sub" id="authModalSub">Sign in to your account to book & manage appointments</p>
+            <button class="auth-close-btn" onclick="closeAuthModal()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="auth-tabs">
+            <button class="auth-tab-btn active" id="loginTabBtn" onclick="switchAuthTab('login')">
+                Sign In
+            </button>
+            <button class="auth-tab-btn" id="registerTabBtn" onclick="switchAuthTab('register')">
+                Create Account
+            </button>
+        </div>
+
+        <!-- Form Body -->
+        <div class="auth-form-body">
+
+            <!-- === LOGIN PANEL === -->
+            <div class="auth-panel active" id="loginPanel">
+                <div class="auth-msg" id="loginMsg"></div>
+                <div class="auth-field">
+                    <label>Mobile Number</label>
+                    <input type="tel" id="loginMobile" maxlength="10" placeholder="10-digit mobile number">
+                </div>
+                <div class="auth-field">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password">
+                </div>
+                <button class="auth-submit-btn" id="loginBtn" onclick="submitLogin()">
+                    <span>Sign In to Glamour</span>
+                </button>
+                <div class="auth-switch-text">
+                    New here? <a onclick="switchAuthTab('register')">Create an account →</a>
+                </div>
+            </div>
+
+            <!-- === REGISTER PANEL === -->
+            <div class="auth-panel" id="registerPanel">
+                <div class="auth-msg" id="registerMsg"></div>
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label>Full Name</label>
+                        <input type="text" id="regName" placeholder="Your name">
+                    </div>
+                    <div class="auth-field">
+                        <label>Mobile Number</label>
+                        <input type="tel" id="regMobile" maxlength="10" placeholder="10 digits">
+                    </div>
+                </div>
+                <div class="auth-field">
+                    <label>Email Address <span style="color:var(--rose-gold); font-size:0.75em;">(optional)</span></label>
+                    <input type="email" id="regEmail" placeholder="your@email.com">
+                </div>
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label>Password</label>
+                        <input type="password" id="regPassword" placeholder="Min. 6 characters">
+                    </div>
+                    <div class="auth-field">
+                        <label>Confirm Password</label>
+                        <input type="password" id="regConfirmPassword" placeholder="Repeat password">
+                    </div>
+                </div>
+                <button class="auth-submit-btn" id="registerBtn" onclick="submitRegister()">
+                    <span>Create My Account</span>
+                </button>
+                <div class="auth-switch-text">
+                    Already a member? <a onclick="switchAuthTab('login')">Sign in →</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ============ MAIN CONTENT ============ -->
+<main>
+    
+<section class="booking-section">
+    <div class="overlay" style="background:rgba(38,10,29,0.82);"></div>
+    <div class="container" style="position:relative; z-index:2;">
+        <div class="row g-5">
+
+            <!-- ===================== FORM ===================== -->
+            <div class="col-lg-7">
+                <div class="booking-glass" data-aos="fade-right">
+                    <div class="booking-glass-title">Book Your Visit</div>
+                    <span class="booking-glass-sub">Schedule Your Luxury Experience</span>
+
+                    <form id="bookingForm" novalidate>
+                        
+                        <input type="hidden" name="customer_id"   id="hiddenCustomerId">
+                        <input type="hidden" name="booking_for"   id="hiddenBookingFor"   value="myself">
+                        <input type="hidden" name="customer_type" id="hiddenCustomerType" value="existing">
+
+                        <!-- FOR WHOM -->
+                        <div class="for-whom-toggle">
+                            <button type="button" class="for-whom-btn active" id="btnMyself" onclick="setBookingFor('myself')">
+                                <i class="bi bi-person-fill"></i>For Myself
+                            </button>
+                            <button type="button" class="for-whom-btn" id="btnSomeone" onclick="setBookingFor('someone')">
+                                <i class="bi bi-people-fill"></i>For Someone Else
+                            </button>
+                        </div>
+
+                        <!-- SOMEONE TYPE -->
+                        <div class="someone-type-row" id="someoneTypeRow">
+                            <button type="button" class="someone-type-btn active" id="btnExisting" onclick="setSomeoneType('existing')">
+                                <i class="bi bi-person-check me-1"></i> Existing Customer
+                            </button>
+                            <button type="button" class="someone-type-btn" id="btnNew" onclick="setSomeoneType('new')">
+                                <i class="bi bi-person-plus me-1"></i> New Person
+                            </button>
+                        </div>
+
+                        <!-- CUSTOMER SEARCH -->
+                        <div class="customer-search-box" id="existingSearchBox">
+                            <label class="form-label-glamour">Search by Mobile Number</label>
+                            <div class="search-input-row">
+                                <input type="tel" id="searchMobileInput" class="form-control-glamour" placeholder="Enter 10-digit mobile number" maxlength="10">
+                                <button type="button" class="btn-search-glamour" id="searchBtn" onclick="searchCustomer()">
+                                    <i class="bi bi-search me-1"></i> Find
+                                </button>
+                            </div>
+                            <div class="search-result-card" id="searchResultCard">
+                                <div class="search-result-avatar" id="searchResultAvatar">?</div>
+                                <div>
+                                    <div class="search-result-name" id="searchResultName">—</div>
+                                    <div class="search-result-sub"  id="searchResultSub">—</div>
+                                </div>
+                                <button type="button" class="search-result-clear" onclick="clearCustomerSearch()">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
+                            </div>
+                            <div class="search-not-found" id="searchNotFound"></div>
+                        </div>
+
+                        <!-- CUSTOMER FIELDS -->
+                        <div class="customer-info-section">
+                            <div class="autofilled-banner" id="autofilledBanner">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span id="autofilledMsg">Details filled from your profile.</span>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group-glamour">
+                                    <label class="form-label-glamour">Full Name *</label>
+                                    <input type="text" name="full_name" id="fieldFullName" class="form-control-glamour" placeholder="Full name" required>
+                                </div>
+                                <div class="form-group-glamour">
+                                    <label class="form-label-glamour">Mobile Number *</label>
+                                    <input type="tel" name="mobile" id="fieldMobile" class="form-control-glamour" placeholder="10-digit mobile" maxlength="10" required>
+                                </div>
+                            </div>
+                            <div class="form-group-glamour">
+                                <label class="form-label-glamour">Email Address <span style="color:var(--rose-gold);font-size:0.8em;">(optional)</span></label>
+                                <input type="email" name="email" id="fieldEmail" class="form-control-glamour" placeholder="your@email.com">
+                            </div>
+                        </div>
+
+                        <!-- SERVICE SECTION -->
+                        <hr class="form-section-divider" data-label="Service Details">
+
+                        <!-- Category blocks injected here -->
+                        <div id="categoryBlocksWrap"></div>
+
+                        <!-- Add category button -->
+                        <button type="button" class="btn-add-category" onclick="addCatBlock()">
+                            <i class="bi bi-plus-circle"></i> Add Another Category
+                        </button>
+
+                        <!-- Grand total summary -->
+                        <div class="grand-summary" id="grandSummary">
+                            <div class="grand-summary-hdr">All Selected Services</div>
+                            <div id="grandSummaryRows"></div>
+                            <div class="grand-total-bar">
+                                <div>
+                                    <div class="gt-label">Total Amount</div>
+                                    <div class="gt-dur" id="gtDur"></div>
+                                </div>
+                                <div class="gt-amount">₹<span id="gtAmt">0</span></div>
+                            </div>
+                        </div>
+
+                        <!-- APPOINTMENT DETAILS -->
+                        <hr class="form-section-divider" data-label="Appointment Details">
+
+                        <div class="form-row">
+                            <div class="form-group-glamour">
+                                <label class="form-label-glamour">Preferred Date *</label>
+                                <input type="date" name="appointment_date" id="appointmentDate" class="form-control-glamour" required>
+                            </div>
+                            <div class="form-group-glamour">
+                                <label class="form-label-glamour">Preferred Time *</label>
+                                <input type="time" name="appointment_time" id="appointmentTime" class="form-control-glamour" min="10:00" max="20:00" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group-glamour">
+                            <label class="form-label-glamour">Advance Payment (₹)</label>
+                            <input type="number" name="advance_paid" class="form-control-glamour" placeholder="Optional advance amount" min="0">
+                        </div>
+
+                        <div class="form-group-glamour">
+                            <label class="form-label-glamour">Special Notes</label>
+                            <textarea name="special_notes" class="form-control-glamour" rows="3" placeholder="Any special requests or preferences..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-glamour-primary w-100" style="justify-content:center;">
+                            <span>Confirm My Appointment</span>
+                        </button>
+
+                        <div id="formErrorMsg" class="mt-3" style="display:none; color:#f1a1a1; font-size:0.85rem; text-align:center;"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ===================== INFO PANEL ===================== -->
+            <div class="col-lg-5" data-aos="fade-left">
+                <div class="booking-info-panel">
+                    <span class="section-label" style="color:var(--rose-gold);">Information</span>
+                    <h2 class="section-title light" style="margin-bottom:36px;">What to<br>Expect</h2>
+                    <div class="info-card">
+                        <div class="info-card-title">Booking Process</div>
+                        <div class="info-point"><i class="bi bi-1-circle"></i><span>Choose a service category and select one or more services.</span></div>
+                        <div class="info-point"><i class="bi bi-2-circle"></i><span>Add more categories for services from different departments.</span></div>
+                        <div class="info-point"><i class="bi bi-3-circle"></i><span>Assign a preferred expert for each selected service.</span></div>
+                        <div class="info-point"><i class="bi bi-4-circle"></i><span>Pick date & time — our team confirms within 2 hours.</span></div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-title">Salon Hours</div>
+                        <div class="info-hrs">
+                            <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Monday — Friday</span><span style="color:var(--rose-gold);">10:00 AM — 8:00 PM</span></div>
+                            <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Saturday</span><span style="color:var(--rose-gold);">9:00 AM — 9:00 PM</span></div>
+                            <div style="display:flex;justify-content:space-between;"><span>Sunday</span><span style="color:var(--rose-gold);">11:00 AM — 6:00 PM</span></div>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-title">Contact Us</div>
+                        <div class="info-point"><i class="bi bi-telephone"></i><span>+91 98765 43210</span></div>
+                        <div class="info-point"><i class="fab fa-whatsapp"></i><span>WhatsApp: +91 98765 43210</span></div>
+                        <div class="info-point"><i class="bi bi-envelope"></i><span>hello@glamourstudio.in</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SUCCESS MODAL -->
+<div class="modal fade success-modal" id="successModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="success-modal-inner">
+                <div class="success-check-wrap">
+                    <div class="success-check-ring"><i class="bi bi-check-lg"></i></div>
+                </div>
+                <div class="success-modal-title">Appointment Booked!</div>
+                <div class="success-modal-sub">Glamour Studio — Confirmation</div>
+                <div class="success-apt-id">
+                    <span class="label">Appointment ID</span>
+                    <span class="apt-id-val" id="aptIdDisplay">—</span>
+                </div>
+                <div class="success-services-summary">
+                    <div class="ssh">Services Booked</div>
+                    <div id="successServicesBody"></div>
+                </div>
+                <div class="success-total-row">
+                    <span class="stl">Total Amount</span>
+                    <span class="stv">₹<span id="successTotalAmt">0</span></span>
+                </div>
+                <p class="success-note">Thank you for choosing Glamour Studio.<br>Our team will contact you within 2 hours to confirm.</p>
+                <button onclick="location.href='index.html'" class="btn-glamour-outline mx-auto" style="display:block;text-align:center;">Back to Home</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer-glamour">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <div class="footer-brand">GLAMOUR</div>
+                <span class="footer-tagline">Beauty Studio</span>
+                <p class="mt-18" style="color:rgba(247,231,206,0.55); font-size:0.88rem; margin-top:18px; line-height:1.8;">
+                    Where every visit is an experience of luxury. We believe beauty is not just appearance — it's confidence, grace, and feeling your absolute best.
+                </p>
+                <div class="footer-social mt-4">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="footer-heading">Quick Links</div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Our Services</a>
+                    <a href="team.html">Our Team</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="booking.html" data-auth="in">Book Appointment</a>
+                    <a href="booking_history.html" data-auth="in">My Bookings</a>
+                    <a href="#" data-auth="out" onclick="openAuthModal('login'); return false;">Book Appointment</a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="footer-heading">Services</div>
+                <div class="footer-links">
+                    <a href="services.html?category=hair_service">Hair Services</a>
+                    <a href="services.html?category=makeup_service">Makeup</a>
+                    <a href="services.html?category=beauty_service">Skin Care</a>
+                    <a href="services.html?category=bridal_service">Bridal Packages</a>
+                    <a href="services.html?category=spa_service">Spa & Massage</a>
+                    <a href="services.html?category=nail_service">Nail Care</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="footer-heading">Visit Us</div>
+                <div class="footer-info">
+                    <i class="bi bi-geo-alt"></i>
+                    <span>123, Glamour Street, Bandra West, Mumbai – 400050, Maharashtra</span>
+                </div>
+                <div class="footer-info">
+                    <i class="bi bi-telephone"></i>
+                    <span>+91 98765 43210</span>
+                </div>
+                <div class="footer-info">
+                    <i class="bi bi-envelope"></i>
+                    <span>glamourstudio@gmail.com</span>
+                </div>
+                <div class="footer-info">
+                    <i class="bi bi-clock"></i>
+                    <span>Mon – Sat: 10:00 AM – 8:00 PM<br>Sunday: 11:00 AM – 6:00 PM</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="yr">2025</span> Glamour Beauty Studio. All rights reserved. Crafted with &hearts; for luxury.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ============ WHATSAPP FLOAT ============ -->
+<a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ============ SCROLL TO TOP ============ -->
+<button id="scrollTop"><i class="bi bi-arrow-up"></i></button>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script><script src="js/booking.js"></script>
+</body>
+</html>

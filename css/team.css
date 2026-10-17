@@ -1,0 +1,120 @@
+.page-hero {
+    height: 50vh; min-height: 360px;
+    background: url('https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=1920&q=80') center/cover no-repeat;
+    position: relative;
+    display: flex; align-items: flex-end;
+    padding-bottom: 60px; padding-top: 100px;
+}
+.page-hero-content { position: relative; z-index: 2; }
+.page-hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--champagne);
+    font-weight: 300; line-height: 1.1;
+}
+.breadcrumb-glamour a { color: var(--rose-gold); font-size:0.78rem; letter-spacing:1px; }
+.breadcrumb-glamour span { color: rgba(247,231,206,0.5); font-size:0.78rem; margin:0 8px; }
+.breadcrumb-glamour .current { color: rgba(247,231,206,0.75); font-size:0.78rem; }
+
+.team-main { padding: 80px 0 100px; }
+
+/* Team Cards */
+.team-card-wrap { margin-bottom: 30px; }
+
+/* Large flip card for team page */
+.team-page-flip { height: 420px; }
+.team-page-flip .flip-card-front img {
+    width: 100%; height: 300px;
+    object-fit: cover; object-position: top;
+    display: block;
+}
+.team-front-body { padding: 20px 22px; }
+.team-front-name {
+    font-family: var(--font-serif);
+    font-size: 1.2rem; color: var(--plum);
+    margin-bottom: 4px;
+}
+.team-front-role {
+    font-size: 0.68rem; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--rose-gold);
+}
+.team-back-name {
+    font-family: var(--font-serif);
+    font-size: 1.25rem; color: var(--champagne);
+    margin: 10px 0 4px;
+}
+.team-back-role {
+    font-size: 0.68rem; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--rose-gold);
+    margin-bottom: 16px; display: block;
+}
+.team-back-divider {
+    width: 40px; height: 1px;
+    background: rgba(196,139,159,0.4);
+    margin: 0 auto 16px;
+}
+.team-back-info {
+    font-size: 0.82rem;
+    color: rgba(247,231,206,0.7);
+    line-height: 1.8; margin-bottom: 18px;
+}
+.team-expertise-badge {
+    display: inline-block;
+    background: rgba(196,139,159,0.2);
+    border: 1px solid rgba(196,139,159,0.3);
+    color: var(--rose-gold);
+    font-size: 0.65rem; letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px; margin-bottom: 20px;
+}
+.team-socials { display: flex; gap: 10px; justify-content: center; }
+.team-socials a {
+    width: 34px; height: 34px;
+    border: 1px solid rgba(247,231,206,0.25);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--rose-gold); font-size: 0.85rem;
+    transition: var(--transition);
+}
+.team-socials a:hover {
+    background: var(--rose-gold);
+    border-color: var(--rose-gold);
+    color: var(--plum);
+}
+
+/* Senior Stylists Owl */
+.senior-section {
+    background: var(--champagne);
+    padding: 80px 0;
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        height: auto; min-height: 280px;
+        padding-bottom: 40px; padding-top: 100px;
+    }
+    .page-hero-title { font-size: clamp(2rem, 8vw, 3rem) !important; }
+    .team-main { padding: 50px 0 60px !important; }
+    .senior-section { padding: 60px 0 !important; }
+
+    /* Team flip cards - on mobile make them tappable */
+    .team-page-flip { height: 380px; }
+    .team-page-flip .flip-card-front img { height: 260px; }
+
+    .team-back-info { font-size: 0.78rem; }
+    .team-back-name { font-size: 1.1rem; }
+
+    /* CTA section */
+    section[style*="padding:80px"] { padding: 60px 0 !important; }
+}
+
+@media (max-width: 480px) {
+    .team-page-flip { height: 340px; }
+    .team-page-flip .flip-card-front img { height: 230px; }
+    .team-front-body { padding: 14px 16px; }
+    .team-front-name { font-size: 1rem; }
+    .team-back-info { font-size: 0.75rem; margin-bottom: 12px; }
+    .team-back-divider { margin-bottom: 10px; }
+    .team-expertise-badge { font-size: 0.58rem; padding: 3px 10px; margin-bottom: 6px; }
+    .team-socials a { width: 30px; height: 30px; font-size: 0.75rem; }
+    .flip-card-back { padding: 20px 16px; }
+}

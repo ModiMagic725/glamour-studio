@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium salon-grade hair, skin and makeup products from Glamour Studio.">
+    <meta name="theme-color" content="#3b0f2b">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+    <title>Our Products — Glamour Studio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <!-- AOS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/products.css">
+
+    
+
+
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader">
+    <div class="preloader-inner">
+        <span class="preloader-logo">GLAMOUR</span>
+        <span class="preloader-tagline">Studio</span>
+        <div class="preloader-bar"></div>
+    </div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar navbar-glamour navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand navbar-brand-glamour" href="index.html">
+            GLAMOUR<span class="brand-sub">Beauty Studio</span>
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                <li class="nav-item">
+                    <a class="nav-link " href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="services.html">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="team.html">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="products.html">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="gallery.html">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="contact.html">Contact</a>
+                </li>
+
+                <!-- Admin Panel Link -->
+                <li class="nav-item ms-lg-2">
+                    <a href="/admin-panel/" target="_blank"
+                       style="font-family:var(--font-sans); font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:rgba(247,231,206,0.4) !important; padding:6px 10px !important; border:1px solid rgba(247,231,206,0.1); transition:var(--transition);"
+                       onmouseover="this.style.color='rgba(196,139,159,0.8)'; this.style.borderColor='rgba(196,139,159,0.3)'"
+                       onmouseout="this.style.color='rgba(247,231,206,0.4)'; this.style.borderColor='rgba(247,231,206,0.1)'" rel="noopener noreferrer">
+                        <i class="bi bi-shield-lock fs-6" style="font-size:0.7rem;"></i> 
+                    </a>
+                </li>
+
+                <!-- ===== DYNAMIC AUTH SECTION ===== -->
+                <!-- Logged In (shown by JS when a customer is signed in) -->
+                <li class="nav-item ms-lg-3 nav-customer-dropdown" id="customerNavItem" data-auth="in">
+                    <button class="btn-nav-customer" id="customerNavBtn" onclick="toggleCustomerMenu()" aria-label="Account menu">
+                        <span class="customer-dot"></span>
+                        <span id="navCustomerName"></span>
+                        <i class="bi bi-chevron-down" style="font-size:0.65rem;"></i>
+                    </button>
+                    <div class="customer-nav-menu" id="customerNavMenu">
+                        <div class="menu-customer-name"><span id="menuCustomerName"></span><small>Glamour Member</small></div>
+                        <a href="booking.html"><i class="bi bi-calendar-plus"></i> Book Appointment</a>
+                        <a href="booking_history.html"><i class="bi bi-clock-history"></i> My Bookings</a>
+                        <a href="#" class="menu-logout" onclick="logoutCustomer(); return false;"><i class="bi bi-box-arrow-right"></i> Sign Out</a>
+                    </div>
+                </li>
+                <li class="nav-item ms-lg-1" data-auth="in">
+                    <a class="nav-link btn-navbar-book " href="booking.html">Book Now</a>
+                </li>
+                <!-- Not Logged In -->
+                <li class="nav-item ms-lg-2" data-auth="out">
+                    <button class="btn-nav-login" onclick="openAuthModal('login')"><i class="bi bi-person"></i> Login</button>
+                </li>
+                <li class="nav-item ms-lg-1" data-auth="out">
+                    <a class="nav-link btn-navbar-book" onclick="openAuthModal('login'); return false;" href="#">Book Now</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ============ AUTH MODAL ============ -->
+<div class="glamour-auth-backdrop" id="authBackdrop">
+    <div class="glamour-auth-bg" onclick="closeAuthModal()"></div>
+    <div class="glamour-auth-box">
+        <!-- Header -->
+        <div class="auth-modal-header">
+            <span class="auth-modal-logo">✦ Glamour Studio</span>
+            <h2 class="auth-modal-title" id="authModalTitle">Welcome Back</h2>
+            <p class="auth-modal-sub" id="authModalSub">Sign in to your account to book & manage appointments</p>
+            <button class="auth-close-btn" onclick="closeAuthModal()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="auth-tabs">
+            <button class="auth-tab-btn active" id="loginTabBtn" onclick="switchAuthTab('login')">
+                Sign In
+            </button>
+            <button class="auth-tab-btn" id="registerTabBtn" onclick="switchAuthTab('register')">
+                Create Account
+            </button>
+        </div>
+
+        <!-- Form Body -->
+        <div class="auth-form-body">
+
+            <!-- === LOGIN PANEL === -->
+            <div class="auth-panel active" id="loginPanel">
+                <div class="auth-msg" id="loginMsg"></div>
+                <div class="auth-field">
+                    <label>Mobile Number</label>
+                    <input type="tel" id="loginMobile" maxlength="10" placeholder="10-digit mobile number">
+                </div>
+                <div class="auth-field">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password">
+                </div>
+                <button class="auth-submit-btn" id="loginBtn" onclick="submitLogin()">
+                    <span>Sign In to Glamour</span>
+                </button>
+                <div class="auth-switch-text">
+                    New here? <a onclick="switchAuthTab('register')">Create an account →</a>
+                </div>
+            </div>
+
+            <!-- === REGISTER PANEL === -->
+            <div class="auth-panel" id="registerPanel">
+                <div class="auth-msg" id="registerMsg"></div>
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label>Full Name</label>
+                        <input type="text" id="regName" placeholder="Your name">
+                    </div>
+                    <div class="auth-field">
+                        <label>Mobile Number</label>
+                        <input type="tel" id="regMobile" maxlength="10" placeholder="10 digits">
+                    </div>
+                </div>
+                <div class="auth-field">
+                    <label>Email Address <span style="color:var(--rose-gold); font-size:0.75em;">(optional)</span></label>
+                    <input type="email" id="regEmail" placeholder="your@email.com">
+                </div>
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label>Password</label>
+                        <input type="password" id="regPassword" placeholder="Min. 6 characters">
+                    </div>
+                    <div class="auth-field">
+                        <label>Confirm Password</label>
+                        <input type="password" id="regConfirmPassword" placeholder="Repeat password">
+                    </div>
+                </div>
+                <button class="auth-submit-btn" id="registerBtn" onclick="submitRegister()">
+                    <span>Create My Account</span>
+                </button>
+                <div class="auth-switch-text">
+                    Already a member? <a onclick="switchAuthTab('login')">Sign in →</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ============ MAIN CONTENT ============ -->
+<main>
+    
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <div class="overlay overlay-plum"></div>
+    <div class="container page-hero-content">
+        <div class="breadcrumb-glamour mb-12" style="margin-bottom:12px;">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span class="current">Our Products</span>
+        </div>
+        <span class="section-label">Our Collection</span>
+        <h1 class="page-hero-title">Premium<br>Beauty Products</h1>
+    </div>
+</div>
+
+<!-- PRODUCTS MAIN -->
+<section class="products-main">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-label">Browse by Category</span>
+            <h2 class="section-title">Shop Our Collection</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- CATEGORY FILTER TABS -->
+        <div class="glamour-tabs" data-aos="fade-up">
+            <button class="glamour-tab-btn active"
+                    onclick="filterProducts('all')">All Products</button>
+            
+            <button class="glamour-tab-btn "
+                    onclick="filterProducts('hair_care')">
+                Hair Care
+            </button>
+            
+            <button class="glamour-tab-btn "
+                    onclick="filterProducts('skin_care')">
+                Skin Care
+            </button>
+            
+            <button class="glamour-tab-btn "
+                    onclick="filterProducts('makeup')">
+                Makeup
+            </button>
+            
+            <button class="glamour-tab-btn "
+                    onclick="filterProducts('nail_care')">
+                Nail Care
+            </button>
+            
+            <button class="glamour-tab-btn "
+                    onclick="filterProducts('fragrance')">
+                Fragrance
+            </button>
+            
+        </div>
+
+        <!-- PRODUCTS GRID -->
+        <div class="row g-4" id="productsGrid">
+            
+            <div class="col-lg-3 col-md-4 col-6 product-item"
+                 data-category="hair_care"
+                 data-aos="fade-up"
+                 data-aos-delay="100">
+                <div class="product-g-card">
+                    <div class="product-g-img">
+                        
+                        <img src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=600&amp;q=80" alt="Argan Repair Shampoo" loading="lazy">
+                        
+
+                        
+
+                        <div class="product-g-overlay">
+                            <button class="btn-glamour-outline"
+                                    style="font-size:0.68rem; padding:10px 22px;"
+                                    onclick="openProductModal(
+                                        'Argan Repair Shampoo',
+                                        'Rosé Botanics',
+                                        'Sulphate\u002Dfree shampoo enriched with argan oil to repair, nourish and add shine to dry, damaged hair.',
+                                        '899',
+                                        'Hair Care',
+                                        'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=600&amp;q=80'
+                                    )">
+                                Quick View
+                            </button>
+                            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20enquire%20about%20Argan%20Repair%20Shampoo"
+                               class="btn-glamour-rose"
+                               style="font-size:0.68rem; padding:10px 22px;"
+                               target="_blank" rel="noopener noreferrer">
+                                Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-g-body">
+                        <span class="product-g-brand">Rosé Botanics</span>
+                        <div class="product-g-name">Argan Repair Shampoo</div>
+                        <div class="product-g-cat">Hair Care</div>
+                        <div class="product-g-footer">
+                            <div class="product-g-price">₹899</div>
+                            <button class="btn-glamour-rose"
+                                    style="font-size:0.65rem; padding:8px 16px;"
+                                    onclick="openProductModal(
+                                        'Argan Repair Shampoo',
+                                        'Rosé Botanics',
+                                        'Sulphate\u002Dfree shampoo enriched with argan oil to repair, nourish and add shine to dry, damaged hair.',
+                                        '899',
+                                        'Hair Care',
+                                        'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=600&amp;q=80'
+                                    )">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-4 col-6 product-item"
+                 data-category="hair_care"
+                 data-aos="fade-up"
+                 data-aos-delay="200">
+                <div class="product-g-card">
+                    <div class="product-g-img">
+                        
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&amp;q=80" alt="Silk Protein Hair Mask" loading="lazy">
+                        
+
+                        
+
+                        <div class="product-g-overlay">
+                            <button class="btn-glamour-outline"
+                                    style="font-size:0.68rem; padding:10px 22px;"
+                                    onclick="openProductModal(
+                                        'Silk Protein Hair Mask',
+                                        'Glamour Atelier',
+                                        'Deep\u002Dconditioning mask with silk proteins that restores softness and strength in just five minutes.',
+                                        '1299',
+                                        'Hair Care',
+                                        'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&amp;q=80'
+                                    )">
+                                Quick View
+                            </button>
+                            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20enquire%20about%20Silk%20Protein%20Hair%20Mask"
+                               class="btn-glamour-rose"
+                               style="font-size:0.68rem; padding:10px 22px;"
+                               target="_blank" rel="noopener noreferrer">
+                                Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-g-body">
+                        <span class="product-g-brand">Glamour Atelier</span>
+                        <div class="product-g-name">Silk Protein Hair Mask</div>
+                        <div class="product-g-cat">Hair Care</div>
+                        <div class="product-g-footer">
+                            <div class="product-g-price">₹1299</div>
+                            <button class="btn-glamour-rose"
+                                    style="font-size:0.65rem; padding:8px 16px;"
+                                    onclick="openProductModal(
+                                        'Silk Protein Hair Mask',
+                                        'Glamour Atelier',
+                                        'Deep\u002Dconditioning mask with silk proteins that restores softness and strength in just five minutes.',
+                                        '1299',
+                                        'Hair Care',
+                                        'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&amp;q=80'
+                                    )">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-4 col-6 product-item"
+                 data-category="skin_care"
+                 data-aos="fade-up"
+                 data-aos-delay="300">
+                <div class="product-g-card">
+                    <div class="product-g-img">
+                        
+                        <img src="https://images.unsplash.com/photo-1619451334792-150fd785ee74?w=600&amp;q=80" alt="Vitamin C Glow Serum" loading="lazy">
+                        
+
+                        
+                        <span class="product-low-stock">Low Stock</span>
+                        
+
+                        <div class="product-g-overlay">
+                            <button class="btn-glamour-outline"
+                                    style="font-size:0.68rem; padding:10px 22px;"
+                                    onclick="openProductModal(
+                                        'Vitamin C Glow Serum',
+                                        'Lumière',
+                                        'A lightweight serum that brightens, evens skin tone and fades dullness for a radiant complexion.',
+                                        '1799',
+                                        'Skin Care',
+                                        'https://images.unsplash.com/photo-1619451334792-150fd785ee74?w=600&amp;q=80'
+                                    )">
+                                Quick View
+                            </button>
+                            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20enquire%20about%20Vitamin%20C%20Glow%20Serum"
+                               class="btn-glamour-rose"
+                               style="font-size:0.68rem; padding:10px 22px;"
+                               target="_blank" rel="noopener noreferrer">
+                                Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-g-body">
+                        <span class="product-g-brand">Lumière</span>
+                        <div class="product-g-name">Vitamin C Glow Serum</div>
+                        <div class="product-g-cat">Skin Care</div>
+                        <div class="product-g-footer">
+                            <div class="product-g-price">₹1799</div>
+                            <button class="btn-glamour-rose"
+                                    style="font-size:0.65rem; padding:8px 16px;"
+                                    onclick="openProductModal(
+                                        'Vitamin C Glow Serum',
+                                        'Lumière',
+                                        'A lightweight serum that brightens, evens skin tone and fades dullness for a radiant complexion.',
+                                        '1799',
+                                        'Skin Care',
+                                        'https://images.unsplash.com/photo-1619451334792-150fd785ee74?w=600&amp;q=80'
+                                    )">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-4 col-6 product-item"
+                 data-category="skin_care"
+                 data-aos="fade-up"
+                 data-aos-delay="400">
+                <div class="product-g-card">
+                    <div class="product-g-img">
+                        
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&amp;q=80" alt="Hydra Dew Moisturiser" loading="lazy">
+                        
+
+                        
+
+                        <div class="product-g-overlay">
+                            <button class="btn-glamour-outline"
+                                    style="font-size:0.68rem; padding:10px 22px;"
+                                    onclick="openProductModal(
+                                        'Hydra Dew Moisturiser',
+                                        'Lumière',
+                                        'Oil\u002Dfree gel\u002Dcream that delivers 48\u002Dhour hydration and a fresh, dewy finish.',
+                                        '1499',
+                                        'Skin Care',
+                                        'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&amp;q=80'
+                                    )">
+                                Quick View
+                            </button>
+                            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20enquire%20about%20Hydra%20Dew%20Moisturiser"
+                               class="btn-glamour-rose"
+                               style="font-size:0.68rem; padding:10px 22px;"
+                               target="_blank" rel="noopener noreferrer">
+                                Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-g-body">
+                        <span class="product-g-brand">Lumière</span>
+                        <div class="product-g-name">Hydra Dew Moisturiser</div>
+                        <div class="product-g-cat">Skin Care</div>
+                        <div class="product-g-footer">
+                            <div class="product-g-price">₹1499</div>
+                            <button class="btn-glamour-rose"
+                                    style="font-size:0.65rem; padding:8px 16px;"
+                                    onclick="openProductModal(
+                                        'Hydra Dew Moisturiser',
+                                        'Lumière',
+                                        'Oil\u002Dfree gel\u002Dcream that delivers 48\u002Dhour hydration and a fresh, dewy finish.',
+                                        '1499',
+                                        'Skin Care',
+                                        'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&amp;q=80'
+                                    )">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-4 col-6 product-item"
+                 data-category="makeup"
+                 data-aos="fade-up"
+                 data-aos-delay="500">
+                <div class="product-g-card">
+                    <div class="product-g-img">
+                        
+                        <img src="https://images.unsplash.com/photo-1563202443-e29ffe8d3af3?w=600&amp;q=80" alt="Velvet Matte Lipstick" loading="lazy">
+                        
+
+                        
+
+                        <div class="product-g-overlay">
+                            <button class="btn-glamour-outline"
+                                    style="font-size:0.68rem; padding:10px 22px;"
+                                    onclick="openProductModal(
+                                        'Velvet Matte Lipstick',
+                                        'Glamour Atelier',
+                                        'A creamy, long\u002Dwear matte lipstick in flattering shades that feels comfortable all day.',
+                                        '999',
+                                        'Makeup',
+                                        'https://images.unsplash.com/photo-1563202443-e29ffe8d3af3?w=600&amp;q=80'
+                                    )">
+                                Quick View
+                            </button>
+                            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20enquire%20about%20Velvet%20Matte%20Lipstick"
+                               class="btn-glamour-rose"
+                               style="font-size:0.68rem; padding:10px 22px;"
+                               target="_blank" rel="noopener noreferrer">
+                                Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-g-body">
+                        <span class="product-g-brand">Glamour Atelier</span>
+                        <div class="product-g-name">Velvet Matte Lipstick</div>
+                        <div class="product-g-cat">Makeup</div>
+                        <div class="product-g-footer">
+                            <div class="product-g-price">₹999</div>
+                            <button class="btn-glamour-rose"
+                                    style="font-size:0.65rem; padding:8px 16px;"
+                                    onclick="openProductModal(
+                                        'Velvet Matte Lipstick',
+                                        'Glamour Atelier',
+                                        'A creamy, long\u002Dwear matte lipstick in flattering shades that feels comfortable all day.',
+                                        '999',
+                                        'Makeup',
+                                        'https://images.unsplash.com/photo-1563202443-e29ffe8d3af3?w=600&amp;q=80'
+                                    )">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-4 col-6 product-item"
+                 data-category="makeup"
+                 data-aos="fade-up"
+                 data-aos-delay="600">
+                <div class="product-g-card">
+                    <div class="product-g-img">
+                        
+                        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&amp;q=80" alt="Radiance Foundation" loading="lazy">
+                        
+
+                        
+
+                        <div class="product-g-overlay">
+                            <button class="btn-glamour-outline"
+                                    style="font-size:0.68rem; padding:10px 22px;"
+                                    onclick="openProductModal(
+                                        'Radiance Foundation',
+                                        'Glamour Atelier',
+                                        'Buildable, natural\u002Dfinish foundation with SPF that blends seamlessly for a skin\u002Dlike glow.',
+                                        '2199',
+                                        'Makeup',
+                                        'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&amp;q=80'
+                                    )">
+                                Quick View
+                            </button>
+                            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20enquire%20about%20Radiance%20Foundation"
+                               class="btn-glamour-rose"
+                               style="font-size:0.68rem; padding:10px 22px;"
+                               target="_blank" rel="noopener noreferrer">
+                                Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-g-body">
+                        <span class="product-g-brand">Glamour Atelier</span>
+                        <div class="product-g-name">Radiance Foundation</div>
+                        <div class="product-g-cat">Makeup</div>
+                        <div class="product-g-footer">
+                            <div class="product-g-price">₹2199</div>
+                            <button class="btn-glamour-rose"
+                                    style="font-size:0.65rem; padding:8px 16px;"
+                                    onclick="openProductModal(
+                                        'Radiance Foundation',
+                                        'Glamour Atelier',
+                                        'Buildable, natural\u002Dfinish foundation with SPF that blends seamlessly for a skin\u002Dlike glow.',
+                                        '2199',
+                                        'Makeup',
+                                        'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&amp;q=80'
+                                    )">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-4 col-6 product-item"
+                 data-category="nail_care"
+                 data-aos="fade-up"
+                 data-aos-delay="700">
+                <div class="product-g-card">
+                    <div class="product-g-img">
+                        
+                        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&amp;q=80" alt="Gel Nail Colour Set" loading="lazy">
+                        
+
+                        
+
+                        <div class="product-g-overlay">
+                            <button class="btn-glamour-outline"
+                                    style="font-size:0.68rem; padding:10px 22px;"
+                                    onclick="openProductModal(
+                                        'Gel Nail Colour Set',
+                                        'Rosé Botanics',
+                                        'A curated set of high\u002Dshine, chip\u002Dresistant nail colours with a quick\u002Ddry formula.',
+                                        '1199',
+                                        'Nail Care',
+                                        'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&amp;q=80'
+                                    )">
+                                Quick View
+                            </button>
+                            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20enquire%20about%20Gel%20Nail%20Colour%20Set"
+                               class="btn-glamour-rose"
+                               style="font-size:0.68rem; padding:10px 22px;"
+                               target="_blank" rel="noopener noreferrer">
+                                Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-g-body">
+                        <span class="product-g-brand">Rosé Botanics</span>
+                        <div class="product-g-name">Gel Nail Colour Set</div>
+                        <div class="product-g-cat">Nail Care</div>
+                        <div class="product-g-footer">
+                            <div class="product-g-price">₹1199</div>
+                            <button class="btn-glamour-rose"
+                                    style="font-size:0.65rem; padding:8px 16px;"
+                                    onclick="openProductModal(
+                                        'Gel Nail Colour Set',
+                                        'Rosé Botanics',
+                                        'A curated set of high\u002Dshine, chip\u002Dresistant nail colours with a quick\u002Ddry formula.',
+                                        '1199',
+                                        'Nail Care',
+                                        'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&amp;q=80'
+                                    )">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-4 col-6 product-item"
+                 data-category="fragrance"
+                 data-aos="fade-up"
+                 data-aos-delay="800">
+                <div class="product-g-card">
+                    <div class="product-g-img">
+                        
+                        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&amp;q=80" alt="Rose Oud Eau de Parfum" loading="lazy">
+                        
+
+                        
+                        <span class="product-low-stock">Low Stock</span>
+                        
+
+                        <div class="product-g-overlay">
+                            <button class="btn-glamour-outline"
+                                    style="font-size:0.68rem; padding:10px 22px;"
+                                    onclick="openProductModal(
+                                        'Rose Oud Eau de Parfum',
+                                        'Maison Glamour',
+                                        'A warm floral\u002Dwoody fragrance with notes of rose, oud and amber for an unforgettable signature.',
+                                        '3499',
+                                        'Fragrance',
+                                        'https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&amp;q=80'
+                                    )">
+                                Quick View
+                            </button>
+                            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20enquire%20about%20Rose%20Oud%20Eau%20de%20Parfum"
+                               class="btn-glamour-rose"
+                               style="font-size:0.68rem; padding:10px 22px;"
+                               target="_blank" rel="noopener noreferrer">
+                                Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-g-body">
+                        <span class="product-g-brand">Maison Glamour</span>
+                        <div class="product-g-name">Rose Oud Eau de Parfum</div>
+                        <div class="product-g-cat">Fragrance</div>
+                        <div class="product-g-footer">
+                            <div class="product-g-price">₹3499</div>
+                            <button class="btn-glamour-rose"
+                                    style="font-size:0.65rem; padding:8px 16px;"
+                                    onclick="openProductModal(
+                                        'Rose Oud Eau de Parfum',
+                                        'Maison Glamour',
+                                        'A warm floral\u002Dwoody fragrance with notes of rose, oud and amber for an unforgettable signature.',
+                                        '3499',
+                                        'Fragrance',
+                                        'https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&amp;q=80'
+                                    )">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-4 col-6 product-item"
+                 data-category="nail_care"
+                 data-aos="fade-up"
+                 data-aos-delay="900">
+                <div class="product-g-card">
+                    <div class="product-g-img">
+                        
+                        <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=600&amp;q=80" alt="Cuticle Care Oil" loading="lazy">
+                        
+
+                        
+
+                        <div class="product-g-overlay">
+                            <button class="btn-glamour-outline"
+                                    style="font-size:0.68rem; padding:10px 22px;"
+                                    onclick="openProductModal(
+                                        'Cuticle Care Oil',
+                                        'Rosé Botanics',
+                                        'Nourishing oil blend that softens cuticles and strengthens nails with daily use.',
+                                        '599',
+                                        'Nail Care',
+                                        'https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=600&amp;q=80'
+                                    )">
+                                Quick View
+                            </button>
+                            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20enquire%20about%20Cuticle%20Care%20Oil"
+                               class="btn-glamour-rose"
+                               style="font-size:0.68rem; padding:10px 22px;"
+                               target="_blank" rel="noopener noreferrer">
+                                Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-g-body">
+                        <span class="product-g-brand">Rosé Botanics</span>
+                        <div class="product-g-name">Cuticle Care Oil</div>
+                        <div class="product-g-cat">Nail Care</div>
+                        <div class="product-g-footer">
+                            <div class="product-g-price">₹599</div>
+                            <button class="btn-glamour-rose"
+                                    style="font-size:0.65rem; padding:8px 16px;"
+                                    onclick="openProductModal(
+                                        'Cuticle Care Oil',
+                                        'Rosé Botanics',
+                                        'Nourishing oil blend that softens cuticles and strengthens nails with daily use.',
+                                        '599',
+                                        'Nail Care',
+                                        'https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=600&amp;q=80'
+                                    )">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Empty state for JS filter -->
+        <div id="productEmptyMsg" class="text-center py-5" style="display:none;">
+            <i class="bi bi-bag-x" style="font-size:2.5rem; color:var(--rose-gold); display:block; margin-bottom:16px;"></i>
+            <p style="color:var(--text-mid);">No products found in this category.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- PRODUCT MODAL -->
+<div class="modal fade product-modal" id="productModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pModalName">Product Name</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        style="filter:invert(1) sepia(1) saturate(0);"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        <img id="pModalImg"
+                             src="https://images.unsplash.com/photo-1619451334792-150fd785ee74?w=600&q=80"
+                             alt="Product" class="product-modal-img" loading="lazy">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="product-modal-details">
+                            <span id="pModalBrand" class="product-g-brand" style="font-size:0.7rem;"></span>
+                            <div class="product-modal-price">₹<span id="pModalPrice"></span></div>
+                            <span id="pModalCat" class="product-g-cat"></span>
+                            <div style="height:1px; background:rgba(59,15,43,0.1); margin:16px 0;"></div>
+                            <p class="product-modal-desc" id="pModalDesc"></p>
+
+                            <div class="enquiry-badge">
+                                <i class="bi bi-info-circle" style="color:var(--rose-gold);"></i>
+                                This product is available in-salon. Contact us to enquire.
+                            </div>
+
+                            <div class="d-flex gap-3 mt-4">
+                                <a id="pModalWa" href="#" target="_blank" class="btn-glamour-primary" style="font-size:0.7rem; padding:12px 24px;" rel="noopener noreferrer">
+                                    <span><i class="fab fa-whatsapp me-2"></i>WhatsApp Enquiry</span>
+                                </a>
+                                <a href="contact.html" class="btn-glamour-outline" style="font-size:0.7rem; padding:12px 24px; color:var(--plum); border-color:var(--plum);">
+                                    Contact Us
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer-glamour">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <div class="footer-brand">GLAMOUR</div>
+                <span class="footer-tagline">Beauty Studio</span>
+                <p class="mt-18" style="color:rgba(247,231,206,0.55); font-size:0.88rem; margin-top:18px; line-height:1.8;">
+                    Where every visit is an experience of luxury. We believe beauty is not just appearance — it's confidence, grace, and feeling your absolute best.
+                </p>
+                <div class="footer-social mt-4">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="footer-heading">Quick Links</div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Our Services</a>
+                    <a href="team.html">Our Team</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="booking.html" data-auth="in">Book Appointment</a>
+                    <a href="booking_history.html" data-auth="in">My Bookings</a>
+                    <a href="#" data-auth="out" onclick="openAuthModal('login'); return false;">Book Appointment</a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="footer-heading">Services</div>
+                <div class="footer-links">
+                    <a href="services.html?category=hair_service">Hair Services</a>
+                    <a href="services.html?category=makeup_service">Makeup</a>
+                    <a href="services.html?category=beauty_service">Skin Care</a>
+                    <a href="services.html?category=bridal_service">Bridal Packages</a>
+                    <a href="services.html?category=spa_service">Spa & Massage</a>
+                    <a href="services.html?category=nail_service">Nail Care</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="footer-heading">Visit Us</div>
+                <div class="footer-info">
+                    <i class="bi bi-geo-alt"></i>
+                    <span>123, Glamour Street, Bandra West, Mumbai – 400050, Maharashtra</span>
+                </div>
+                <div class="footer-info">
+                    <i class="bi bi-telephone"></i>
+                    <span>+91 98765 43210</span>
+                </div>
+                <div class="footer-info">
+                    <i class="bi bi-envelope"></i>
+                    <span>glamourstudio@gmail.com</span>
+                </div>
+                <div class="footer-info">
+                    <i class="bi bi-clock"></i>
+                    <span>Mon – Sat: 10:00 AM – 8:00 PM<br>Sunday: 11:00 AM – 6:00 PM</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="yr">2025</span> Glamour Beauty Studio. All rights reserved. Crafted with &hearts; for luxury.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ============ WHATSAPP FLOAT ============ -->
+<a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ============ SCROLL TO TOP ============ -->
+<button id="scrollTop"><i class="bi bi-arrow-up"></i></button>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script><script src="js/products.js"></script>
+</body>
+</html>

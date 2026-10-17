@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Glamour Studio — luxury hair, makeup, skin, spa and bridal services. Where beauty meets perfection.">
+    <meta name="theme-color" content="#3b0f2b">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+    <title>Glamour Studio — Where Beauty Meets Perfection</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <!-- AOS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    
+
+
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader">
+    <div class="preloader-inner">
+        <span class="preloader-logo">GLAMOUR</span>
+        <span class="preloader-tagline">Studio</span>
+        <div class="preloader-bar"></div>
+    </div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar navbar-glamour navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand navbar-brand-glamour" href="index.html">
+            GLAMOUR<span class="brand-sub">Beauty Studio</span>
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="services.html">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="team.html">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="products.html">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="gallery.html">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="contact.html">Contact</a>
+                </li>
+
+                <!-- Admin Panel Link -->
+                <li class="nav-item ms-lg-2">
+                    <a href="/admin-panel/" target="_blank"
+                       style="font-family:var(--font-sans); font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:rgba(247,231,206,0.4) !important; padding:6px 10px !important; border:1px solid rgba(247,231,206,0.1); transition:var(--transition);"
+                       onmouseover="this.style.color='rgba(196,139,159,0.8)'; this.style.borderColor='rgba(196,139,159,0.3)'"
+                       onmouseout="this.style.color='rgba(247,231,206,0.4)'; this.style.borderColor='rgba(247,231,206,0.1)'" rel="noopener noreferrer">
+                        <i class="bi bi-shield-lock fs-6" style="font-size:0.7rem;"></i> 
+                    </a>
+                </li>
+
+                <!-- ===== DYNAMIC AUTH SECTION ===== -->
+                <!-- Logged In (shown by JS when a customer is signed in) -->
+                <li class="nav-item ms-lg-3 nav-customer-dropdown" id="customerNavItem" data-auth="in">
+                    <button class="btn-nav-customer" id="customerNavBtn" onclick="toggleCustomerMenu()" aria-label="Account menu">
+                        <span class="customer-dot"></span>
+                        <span id="navCustomerName"></span>
+                        <i class="bi bi-chevron-down" style="font-size:0.65rem;"></i>
+                    </button>
+                    <div class="customer-nav-menu" id="customerNavMenu">
+                        <div class="menu-customer-name"><span id="menuCustomerName"></span><small>Glamour Member</small></div>
+                        <a href="booking.html"><i class="bi bi-calendar-plus"></i> Book Appointment</a>
+                        <a href="booking_history.html"><i class="bi bi-clock-history"></i> My Bookings</a>
+                        <a href="#" class="menu-logout" onclick="logoutCustomer(); return false;"><i class="bi bi-box-arrow-right"></i> Sign Out</a>
+                    </div>
+                </li>
+                <li class="nav-item ms-lg-1" data-auth="in">
+                    <a class="nav-link btn-navbar-book " href="booking.html">Book Now</a>
+                </li>
+                <!-- Not Logged In -->
+                <li class="nav-item ms-lg-2" data-auth="out">
+                    <button class="btn-nav-login" onclick="openAuthModal('login')"><i class="bi bi-person"></i> Login</button>
+                </li>
+                <li class="nav-item ms-lg-1" data-auth="out">
+                    <a class="nav-link btn-navbar-book" onclick="openAuthModal('login'); return false;" href="#">Book Now</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ============ AUTH MODAL ============ -->
+<div class="glamour-auth-backdrop" id="authBackdrop">
+    <div class="glamour-auth-bg" onclick="closeAuthModal()"></div>
+    <div class="glamour-auth-box">
+        <!-- Header -->
+        <div class="auth-modal-header">
+            <span class="auth-modal-logo">✦ Glamour Studio</span>
+            <h2 class="auth-modal-title" id="authModalTitle">Welcome Back</h2>
+            <p class="auth-modal-sub" id="authModalSub">Sign in to your account to book & manage appointments</p>
+            <button class="auth-close-btn" onclick="closeAuthModal()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="auth-tabs">
+            <button class="auth-tab-btn active" id="loginTabBtn" onclick="switchAuthTab('login')">
+                Sign In
+            </button>
+            <button class="auth-tab-btn" id="registerTabBtn" onclick="switchAuthTab('register')">
+                Create Account
+            </button>
+        </div>
+
+        <!-- Form Body -->
+        <div class="auth-form-body">
+
+            <!-- === LOGIN PANEL === -->
+            <div class="auth-panel active" id="loginPanel">
+                <div class="auth-msg" id="loginMsg"></div>
+                <div class="auth-field">
+                    <label>Mobile Number</label>
+                    <input type="tel" id="loginMobile" maxlength="10" placeholder="10-digit mobile number">
+                </div>
+                <div class="auth-field">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password">
+                </div>
+                <button class="auth-submit-btn" id="loginBtn" onclick="submitLogin()">
+                    <span>Sign In to Glamour</span>
+                </button>
+                <div class="auth-switch-text">
+                    New here? <a onclick="switchAuthTab('register')">Create an account →</a>
+                </div>
+            </div>
+
+            <!-- === REGISTER PANEL === -->
+            <div class="auth-panel" id="registerPanel">
+                <div class="auth-msg" id="registerMsg"></div>
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label>Full Name</label>
+                        <input type="text" id="regName" placeholder="Your name">
+                    </div>
+                    <div class="auth-field">
+                        <label>Mobile Number</label>
+                        <input type="tel" id="regMobile" maxlength="10" placeholder="10 digits">
+                    </div>
+                </div>
+                <div class="auth-field">
+                    <label>Email Address <span style="color:var(--rose-gold); font-size:0.75em;">(optional)</span></label>
+                    <input type="email" id="regEmail" placeholder="your@email.com">
+                </div>
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label>Password</label>
+                        <input type="password" id="regPassword" placeholder="Min. 6 characters">
+                    </div>
+                    <div class="auth-field">
+                        <label>Confirm Password</label>
+                        <input type="password" id="regConfirmPassword" placeholder="Repeat password">
+                    </div>
+                </div>
+                <button class="auth-submit-btn" id="registerBtn" onclick="submitRegister()">
+                    <span>Create My Account</span>
+                </button>
+                <div class="auth-switch-text">
+                    Already a member? <a onclick="switchAuthTab('login')">Sign in →</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ============ MAIN CONTENT ============ -->
+<main>
+    
+
+<!-- ============================================================
+     HERO SECTION – Bootstrap Carousel
+============================================================ -->
+<section class="hero-section">
+    <div id="heroCarousel" class="carousel slide hero-carousel carousel-fade"
+         data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active hero-slide-1">
+                <div class="overlay overlay-grad"></div>
+            </div>
+            <div class="carousel-item hero-slide-2">
+                <div class="overlay overlay-grad"></div>
+            </div>
+            <div class="carousel-item hero-slide-3">
+                <div class="overlay overlay-grad"></div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button"
+                data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <i class="bi bi-chevron-left text-white fs-5"></i>
+        </button>
+        <button class="carousel-control-next" type="button"
+                data-bs-target="#heroCarousel" data-bs-slide="next">
+            <i class="bi bi-chevron-right text-white fs-5"></i>
+        </button>
+    </div>
+
+    <!-- Hero Content Overlay -->
+    <div class="hero-content">
+        <div class="container">
+            <span class="hero-tag" data-aos="fade-up" data-aos-delay="100">Luxury Beauty Experience</span>
+            <h1 class="hero-heading" data-aos="fade-up" data-aos-delay="200">
+                Where Beauty<br><em>Meets Perfection</em>
+            </h1>
+            <p class="hero-sub" data-aos="fade-up" data-aos-delay="300">
+                Indulge in a world of elegance and expert care. Every service crafted for your transformation.
+            </p>
+            <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
+                <a href="booking.html" class="btn-glamour-primary">
+                    <span>Book Appointment</span>
+                </a>
+                <a href="services.html" class="btn-glamour-outline">
+                    View Services
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     ABOUT PREVIEW
+============================================================ -->
+<section class="about-preview">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="about-img-wrap">
+                    <div class="about-img-deco"></div>
+                    <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=700&q=80"
+                         alt="Our Salon" loading="lazy">
+                    <div class="about-img-badge">
+                        <div style="font-size:2.2rem; font-weight:300;">10+</div>
+                        <div style="font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; color:var(--rose-gold);">Years of Excellence</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 offset-lg-1" data-aos="fade-left">
+                <span class="section-label">Our Story</span>
+                <h2 class="section-title">A Sanctuary of<br>Beauty & Elegance</h2>
+                <div class="section-divider left"></div>
+                <p style="color:var(--text-mid); line-height:1.9; margin-bottom:16px;">
+                    Born from a passion for artistry and a love for making people feel extraordinary, Glamour Studio has been Mumbai's premier destination for luxury beauty services since 2014.
+                </p>
+                <p style="color:var(--text-mid); line-height:1.9; margin-bottom:36px;">
+                    Our carefully curated team of experts brings international techniques and personalised care to every single visit. Because you deserve nothing less than perfection.
+                </p>
+                <a href="about.html" class="btn-glamour-primary">
+                    <span>Discover Our Story</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     SERVICES PREVIEW – Flip Cards
+============================================================ -->
+<section class="services-preview">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label" data-aos="fade-up">What We Offer</span>
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Our Signature Services</h2>
+            <div class="section-divider" data-aos="fade-up" data-aos-delay="150"></div>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-lg-4 col-md-6 service-flip-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&amp;q=80" alt="Signature Haircut &amp; Styling" class="service-flip-front-img" loading="lazy">
+                            
+                            <div class="service-flip-front-body">
+                                <span class="service-category-badge">Hair Services</span>
+                                <h5>Signature Haircut &amp; Styling</h5>
+                                <div class="service-meta">
+                                    <span><i class="bi bi-clock"></i> 45 min</span>
+                                    <span><i class="bi bi-tag"></i> ₹800</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Hair Services</span>
+                            <h4>Signature Haircut &amp; Styling</h4>
+                            <p>A personalised cut and blow-dry designed around your face shape, hair texture and lifestyle by our senior stylists.</p>
+                            <span class="price-tag">₹800</span>
+                            <a href="booking.html?service=1" class="btn-glamour-outline" style="font-size:0.7rem; padding:10px 24px;">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 service-flip-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100d293?w=700&amp;q=80" alt="Party Makeup" class="service-flip-front-img" loading="lazy">
+                            
+                            <div class="service-flip-front-body">
+                                <span class="service-category-badge">Makeup</span>
+                                <h5>Party Makeup</h5>
+                                <div class="service-meta">
+                                    <span><i class="bi bi-clock"></i> 60 min</span>
+                                    <span><i class="bi bi-tag"></i> ₹2500</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Makeup</span>
+                            <h4>Party Makeup</h4>
+                            <p>Flawless glam for parties and celebrations, using long-wear, skin-friendly products tailored to your outfit.</p>
+                            <span class="price-tag">₹2500</span>
+                            <a href="booking.html?service=4" class="btn-glamour-outline" style="font-size:0.7rem; padding:10px 24px;">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 service-flip-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&amp;q=80" alt="Gold Radiance Facial" class="service-flip-front-img" loading="lazy">
+                            
+                            <div class="service-flip-front-body">
+                                <span class="service-category-badge">Skin Care</span>
+                                <h5>Gold Radiance Facial</h5>
+                                <div class="service-meta">
+                                    <span><i class="bi bi-clock"></i> 60 min</span>
+                                    <span><i class="bi bi-tag"></i> ₹2200</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Skin Care</span>
+                            <h4>Gold Radiance Facial</h4>
+                            <p>A luxurious 24K gold facial that deeply nourishes, brightens and revives dull, tired skin.</p>
+                            <span class="price-tag">₹2200</span>
+                            <a href="booking.html?service=7" class="btn-glamour-outline" style="font-size:0.7rem; padding:10px 24px;">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 service-flip-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=700&amp;q=80" alt="Gel Manicure" class="service-flip-front-img" loading="lazy">
+                            
+                            <div class="service-flip-front-body">
+                                <span class="service-category-badge">Nail Care</span>
+                                <h5>Gel Manicure</h5>
+                                <div class="service-meta">
+                                    <span><i class="bi bi-clock"></i> 45 min</span>
+                                    <span><i class="bi bi-tag"></i> ₹900</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Nail Care</span>
+                            <h4>Gel Manicure</h4>
+                            <p>Chip-free gel polish with careful nail shaping and cuticle care for a glossy, lasting finish.</p>
+                            <span class="price-tag">₹900</span>
+                            <a href="booking.html?service=10" class="btn-glamour-outline" style="font-size:0.7rem; padding:10px 24px;">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 service-flip-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&amp;q=80" alt="Aromatherapy Massage" class="service-flip-front-img" loading="lazy">
+                            
+                            <div class="service-flip-front-body">
+                                <span class="service-category-badge">Spa &amp; Massage</span>
+                                <h5>Aromatherapy Massage</h5>
+                                <div class="service-meta">
+                                    <span><i class="bi bi-clock"></i> 60 min</span>
+                                    <span><i class="bi bi-tag"></i> ₹2800</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Spa &amp; Massage</span>
+                            <h4>Aromatherapy Massage</h4>
+                            <p>A calming full-body massage with essential oils to melt away stress and restore balance.</p>
+                            <span class="price-tag">₹2800</span>
+                            <a href="booking.html?service=13" class="btn-glamour-outline" style="font-size:0.7rem; padding:10px 24px;">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 service-flip-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1595476479599-a83c23cf5c14?w=700&amp;q=80" alt="Bridal Makeup Package" class="service-flip-front-img" loading="lazy">
+                            
+                            <div class="service-flip-front-body">
+                                <span class="service-category-badge">Bridal Packages</span>
+                                <h5>Bridal Makeup Package</h5>
+                                <div class="service-meta">
+                                    <span><i class="bi bi-clock"></i> 240 min</span>
+                                    <span><i class="bi bi-tag"></i> ₹25000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Bridal Packages</span>
+                            <h4>Bridal Makeup Package</h4>
+                            <p>Complete bridal makeup, hair styling and draping for your big day, with a trial session included.</p>
+                            <span class="price-tag">₹25000</span>
+                            <a href="booking.html?service=16" class="btn-glamour-outline" style="font-size:0.7rem; padding:10px 24px;">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="services.html" class="btn-glamour-primary">
+                <span>View All Services</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     WHY CHOOSE US – Counters + Features
+============================================================ -->
+<section class="why-section">
+    <div class="overlay overlay-plum"></div>
+    <div class="container" style="position:relative; z-index:2;">
+        <div class="text-center mb-5">
+            <span class="section-label" data-aos="fade-up">The Glamour Difference</span>
+            <h2 class="section-title light" data-aos="fade-up" data-aos-delay="100">Why Choose Us</h2>
+            <div class="section-divider" data-aos="fade-up" data-aos-delay="150"></div>
+        </div>
+
+        <!-- Counters -->
+        <div class="row g-4 mb-6" style="margin-bottom:60px;">
+            <div class="col-6 col-md-3 text-center" data-aos="zoom-in" data-aos-delay="100">
+                <div class="counter-number" data-target="1200">0</div>
+                <div class="counter-label">Happy Clients</div>
+            </div>
+            <div class="col-6 col-md-3 text-center" data-aos="zoom-in" data-aos-delay="200">
+                <div class="counter-number" data-target="50">0</div>
+                <div class="counter-label">Services Offered</div>
+            </div>
+            <div class="col-6 col-md-3 text-center" data-aos="zoom-in" data-aos-delay="300">
+                <div class="counter-number" data-target="12">0</div>
+                <div class="counter-label">Expert Artists</div>
+            </div>
+            <div class="col-6 col-md-3 text-center" data-aos="zoom-in" data-aos-delay="400">
+                <div class="counter-number" data-target="10">0</div>
+                <div class="counter-label">Years of Luxury</div>
+            </div>
+        </div>
+
+        <!-- Feature Icons -->
+        <div class="row g-4">
+            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="why-item">
+                    <div class="why-icon"><i class="bi bi-award"></i></div>
+                    <h5>Award Winning</h5>
+                    <p>Recognised for excellence in beauty artistry across Mumbai.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="why-item">
+                    <div class="why-icon"><i class="bi bi-gem"></i></div>
+                    <h5>Premium Products</h5>
+                    <p>Only international luxury brands touch your skin and hair.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="why-item">
+                    <div class="why-icon"><i class="bi bi-person-check"></i></div>
+                    <h5>Expert Artists</h5>
+                    <p>Certified professionals with years of international training.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="why-item">
+                    <div class="why-icon"><i class="bi bi-shield-check"></i></div>
+                    <h5>Safe & Hygienic</h5>
+                    <p>Highest standards of cleanliness and client safety always.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     TEAM PREVIEW – Owl Carousel with Flip Cards
+============================================================ -->
+<section class="team-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label" data-aos="fade-up">The Artists Behind the Magic</span>
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Meet Our Experts</h2>
+            <div class="section-divider" data-aos="fade-up" data-aos-delay="150"></div>
+        </div>
+
+        <div class="owl-carousel team-owl" data-aos="fade-up" data-aos-delay="200">
+            
+            <div class="team-owl-card">
+                <div class="flip-card team-flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front team-flip-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=500&amp;q=80" alt="Ananya Mehta" loading="lazy">
+                            
+                            <div class="team-flip-front-body">
+                                <h5>Ananya Mehta</h5>
+                                <span class="team-role-badge">Senior Stylist</span>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Expert Artist</span>
+                            <h4 style="margin-top:10px;">Ananya Mehta</h4>
+                            <p style="font-size:0.85rem; color:rgba(247,231,206,0.7);">Creative Director &amp; Senior Stylist</p>
+                            <div style="height:1px; background:rgba(196,139,159,0.3); margin:16px 0;"></div>
+                            <p style="font-size:0.82rem; color:rgba(247,231,206,0.65); line-height:1.7;">
+                                Senior Stylist specialising in premium beauty artistry and client transformation.
+                            </p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-owl-card">
+                <div class="flip-card team-flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front team-flip-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&amp;q=80" alt="Rohan Kapoor" loading="lazy">
+                            
+                            <div class="team-flip-front-body">
+                                <h5>Rohan Kapoor</h5>
+                                <span class="team-role-badge">Senior Stylist</span>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Expert Artist</span>
+                            <h4 style="margin-top:10px;">Rohan Kapoor</h4>
+                            <p style="font-size:0.85rem; color:rgba(247,231,206,0.7);">Senior Hair Stylist</p>
+                            <div style="height:1px; background:rgba(196,139,159,0.3); margin:16px 0;"></div>
+                            <p style="font-size:0.82rem; color:rgba(247,231,206,0.65); line-height:1.7;">
+                                Senior Stylist specialising in premium beauty artistry and client transformation.
+                            </p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-owl-card">
+                <div class="flip-card team-flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front team-flip-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=500&amp;q=80" alt="Kavya Nair" loading="lazy">
+                            
+                            <div class="team-flip-front-body">
+                                <h5>Kavya Nair</h5>
+                                <span class="team-role-badge">Hair Colorist</span>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Expert Artist</span>
+                            <h4 style="margin-top:10px;">Kavya Nair</h4>
+                            <p style="font-size:0.85rem; color:rgba(247,231,206,0.7);">Colour Specialist</p>
+                            <div style="height:1px; background:rgba(196,139,159,0.3); margin:16px 0;"></div>
+                            <p style="font-size:0.82rem; color:rgba(247,231,206,0.65); line-height:1.7;">
+                                Hair Colorist specialising in premium beauty artistry and client transformation.
+                            </p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-owl-card">
+                <div class="flip-card team-flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front team-flip-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100d293?w=500&amp;q=80" alt="Simran Kaur" loading="lazy">
+                            
+                            <div class="team-flip-front-body">
+                                <h5>Simran Kaur</h5>
+                                <span class="team-role-badge">Makeup Artist</span>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Expert Artist</span>
+                            <h4 style="margin-top:10px;">Simran Kaur</h4>
+                            <p style="font-size:0.85rem; color:rgba(247,231,206,0.7);">Lead Makeup Artist</p>
+                            <div style="height:1px; background:rgba(196,139,159,0.3); margin:16px 0;"></div>
+                            <p style="font-size:0.82rem; color:rgba(247,231,206,0.65); line-height:1.7;">
+                                Makeup Artist specialising in premium beauty artistry and client transformation.
+                            </p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-owl-card">
+                <div class="flip-card team-flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front team-flip-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=500&amp;q=80" alt="Neha Verma" loading="lazy">
+                            
+                            <div class="team-flip-front-body">
+                                <h5>Neha Verma</h5>
+                                <span class="team-role-badge">Bridal Specialist</span>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Expert Artist</span>
+                            <h4 style="margin-top:10px;">Neha Verma</h4>
+                            <p style="font-size:0.85rem; color:rgba(247,231,206,0.7);">Bridal Specialist</p>
+                            <div style="height:1px; background:rgba(196,139,159,0.3); margin:16px 0;"></div>
+                            <p style="font-size:0.82rem; color:rgba(247,231,206,0.65); line-height:1.7;">
+                                Bridal Specialist specialising in premium beauty artistry and client transformation.
+                            </p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-owl-card">
+                <div class="flip-card team-flip-card">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front team-flip-front">
+                            
+                            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&amp;q=80" alt="Pooja Iyer" loading="lazy">
+                            
+                            <div class="team-flip-front-body">
+                                <h5>Pooja Iyer</h5>
+                                <span class="team-role-badge">Skin Therapist</span>
+                            </div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <span class="service-category-badge" style="color:var(--rose-gold);">Expert Artist</span>
+                            <h4 style="margin-top:10px;">Pooja Iyer</h4>
+                            <p style="font-size:0.85rem; color:rgba(247,231,206,0.7);">Senior Skin Therapist</p>
+                            <div style="height:1px; background:rgba(196,139,159,0.3); margin:16px 0;"></div>
+                            <p style="font-size:0.82rem; color:rgba(247,231,206,0.65); line-height:1.7;">
+                                Skin Therapist specialising in premium beauty artistry and client transformation.
+                            </p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="team.html" class="btn-glamour-primary">
+                <span>View Full Team</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     REVIEWS – Owl Carousel
+============================================================ -->
+<section class="reviews-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label" data-aos="fade-up" style="color:var(--rose-gold);">Testimonials</span>
+            <h2 class="section-title light" data-aos="fade-up" data-aos-delay="100">What Our Clients Say</h2>
+            <div class="section-divider" data-aos="fade-up" data-aos-delay="150"></div>
+        </div>
+
+        <div class="owl-carousel reviews-owl" data-aos="fade-up" data-aos-delay="200">
+            
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"An absolutely divine experience. The attention to detail and the warmth of the staff made me feel like royalty. I've never left a salon feeling this beautiful."</p>
+                <div class="review-divider"></div>
+                <div class="review-author">Priya Sharma</div>
+                <div class="review-location">Mumbai, Maharashtra</div>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"An absolutely divine experience. The attention to detail and the warmth of the staff made me feel like royalty. I've never left a salon feeling this beautiful."</p>
+                <div class="review-divider"></div>
+                <div class="review-author">Priya Sharma</div>
+                <div class="review-location">Mumbai, Maharashtra</div>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"An absolutely divine experience. The attention to detail and the warmth of the staff made me feel like royalty. I've never left a salon feeling this beautiful."</p>
+                <div class="review-divider"></div>
+                <div class="review-author">Priya Sharma</div>
+                <div class="review-location">Mumbai, Maharashtra</div>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"An absolutely divine experience. The attention to detail and the warmth of the staff made me feel like royalty. I've never left a salon feeling this beautiful."</p>
+                <div class="review-divider"></div>
+                <div class="review-author">Priya Sharma</div>
+                <div class="review-location">Mumbai, Maharashtra</div>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"An absolutely divine experience. The attention to detail and the warmth of the staff made me feel like royalty. I've never left a salon feeling this beautiful."</p>
+                <div class="review-divider"></div>
+                <div class="review-author">Priya Sharma</div>
+                <div class="review-location">Mumbai, Maharashtra</div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     PRODUCTS PREVIEW
+============================================================ -->
+<section class="products-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label" data-aos="fade-up">Our Collection</span>
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Signature Products</h2>
+            <div class="section-divider" data-aos="fade-up" data-aos-delay="150"></div>
+        </div>
+
+        <div class="row g-4">
+            
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="product-card">
+                    <div class="product-img-wrap">
+                        
+                        <img src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=600&amp;q=80" alt="Argan Repair Shampoo" loading="lazy">
+                        
+                        <div class="product-overlay-btn">
+                            <button class="btn-glamour-outline" onclick="openProductModal(1)"
+                                    style="font-size:0.7rem; padding:10px 22px;">
+                                Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-brand">Rosé Botanics</span>
+                        <div class="product-name">Argan Repair Shampoo</div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="product-price">₹899</div>
+                            <span style="font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--rose-gold);">
+                                Hair Care
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-card">
+                    <div class="product-img-wrap">
+                        
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&amp;q=80" alt="Silk Protein Hair Mask" loading="lazy">
+                        
+                        <div class="product-overlay-btn">
+                            <button class="btn-glamour-outline" onclick="openProductModal(2)"
+                                    style="font-size:0.7rem; padding:10px 22px;">
+                                Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-brand">Glamour Atelier</span>
+                        <div class="product-name">Silk Protein Hair Mask</div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="product-price">₹1299</div>
+                            <span style="font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--rose-gold);">
+                                Hair Care
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="product-card">
+                    <div class="product-img-wrap">
+                        
+                        <img src="https://images.unsplash.com/photo-1619451334792-150fd785ee74?w=600&amp;q=80" alt="Vitamin C Glow Serum" loading="lazy">
+                        
+                        <div class="product-overlay-btn">
+                            <button class="btn-glamour-outline" onclick="openProductModal(3)"
+                                    style="font-size:0.7rem; padding:10px 22px;">
+                                Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-brand">Lumière</span>
+                        <div class="product-name">Vitamin C Glow Serum</div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="product-price">₹1799</div>
+                            <span style="font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--rose-gold);">
+                                Skin Care
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="product-card">
+                    <div class="product-img-wrap">
+                        
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&amp;q=80" alt="Hydra Dew Moisturiser" loading="lazy">
+                        
+                        <div class="product-overlay-btn">
+                            <button class="btn-glamour-outline" onclick="openProductModal(4)"
+                                    style="font-size:0.7rem; padding:10px 22px;">
+                                Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-brand">Lumière</span>
+                        <div class="product-name">Hydra Dew Moisturiser</div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="product-price">₹1499</div>
+                            <span style="font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--rose-gold);">
+                                Skin Care
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="product-card">
+                    <div class="product-img-wrap">
+                        
+                        <img src="https://images.unsplash.com/photo-1563202443-e29ffe8d3af3?w=600&amp;q=80" alt="Velvet Matte Lipstick" loading="lazy">
+                        
+                        <div class="product-overlay-btn">
+                            <button class="btn-glamour-outline" onclick="openProductModal(5)"
+                                    style="font-size:0.7rem; padding:10px 22px;">
+                                Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-brand">Glamour Atelier</span>
+                        <div class="product-name">Velvet Matte Lipstick</div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="product-price">₹999</div>
+                            <span style="font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--rose-gold);">
+                                Makeup
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                <div class="product-card">
+                    <div class="product-img-wrap">
+                        
+                        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&amp;q=80" alt="Radiance Foundation" loading="lazy">
+                        
+                        <div class="product-overlay-btn">
+                            <button class="btn-glamour-outline" onclick="openProductModal(6)"
+                                    style="font-size:0.7rem; padding:10px 22px;">
+                                Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-brand">Glamour Atelier</span>
+                        <div class="product-name">Radiance Foundation</div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="product-price">₹2199</div>
+                            <span style="font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--rose-gold);">
+                                Makeup
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="products.html" class="btn-glamour-primary">
+                <span>View All Products</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     CTA SECTION
+============================================================ -->
+<section class="cta-section">
+    <div class="overlay overlay-plum"></div>
+    <div class="container" style="position:relative; z-index:2;">
+        <span class="section-label" style="color:var(--rose-gold);" data-aos="fade-up">Your Transformation Awaits</span>
+        <h2 class="cta-heading" data-aos="fade-up" data-aos-delay="100">
+            Ready For Your<br>Transformation?
+        </h2>
+        <p class="cta-sub" data-aos="fade-up" data-aos-delay="200">Step into luxury. Step into you.</p>
+        <a href="booking.html" class="btn-glamour-primary" data-aos="fade-up" data-aos-delay="300">
+            <span>Book Your Appointment</span>
+        </a>
+    </div>
+</section>
+
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer-glamour">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <div class="footer-brand">GLAMOUR</div>
+                <span class="footer-tagline">Beauty Studio</span>
+                <p class="mt-18" style="color:rgba(247,231,206,0.55); font-size:0.88rem; margin-top:18px; line-height:1.8;">
+                    Where every visit is an experience of luxury. We believe beauty is not just appearance — it's confidence, grace, and feeling your absolute best.
+                </p>
+                <div class="footer-social mt-4">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="footer-heading">Quick Links</div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Our Services</a>
+                    <a href="team.html">Our Team</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="booking.html" data-auth="in">Book Appointment</a>
+                    <a href="booking_history.html" data-auth="in">My Bookings</a>
+                    <a href="#" data-auth="out" onclick="openAuthModal('login'); return false;">Book Appointment</a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="footer-heading">Services</div>
+                <div class="footer-links">
+                    <a href="services.html?category=hair_service">Hair Services</a>
+                    <a href="services.html?category=makeup_service">Makeup</a>
+                    <a href="services.html?category=beauty_service">Skin Care</a>
+                    <a href="services.html?category=bridal_service">Bridal Packages</a>
+                    <a href="services.html?category=spa_service">Spa & Massage</a>
+                    <a href="services.html?category=nail_service">Nail Care</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="footer-heading">Visit Us</div>
+                <div class="footer-info">
+                    <i class="bi bi-geo-alt"></i>
+                    <span>123, Glamour Street, Bandra West, Mumbai – 400050, Maharashtra</span>
+                </div>
+                <div class="footer-info">
+                    <i class="bi bi-telephone"></i>
+                    <span>+91 98765 43210</span>
+                </div>
+                <div class="footer-info">
+                    <i class="bi bi-envelope"></i>
+                    <span>glamourstudio@gmail.com</span>
+                </div>
+                <div class="footer-info">
+                    <i class="bi bi-clock"></i>
+                    <span>Mon – Sat: 10:00 AM – 8:00 PM<br>Sunday: 11:00 AM – 6:00 PM</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="yr">2025</span> Glamour Beauty Studio. All rights reserved. Crafted with &hearts; for luxury.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ============ WHATSAPP FLOAT ============ -->
+<a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ============ SCROLL TO TOP ============ -->
+<button id="scrollTop"><i class="bi bi-arrow-up"></i></button>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script><script src="js/index.js"></script>
+</body>
+</html>
