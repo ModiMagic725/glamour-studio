@@ -21,7 +21,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; overflow-x: hidden; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     body {
         font-family: var(--font-sans);
         background: var(--bg-warm);
@@ -30,6 +30,7 @@
         line-height: 1.75;
         overflow-x: hidden;
     }
+    @supports (overflow: clip) { html, body { overflow-x: clip; } }
     h1,h2,h3,h4,h5 { font-family: var(--font-serif); color: var(--plum); font-weight: 500; line-height: 1.2; }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; }
@@ -59,14 +60,12 @@
     .navbar-glamour {
         background: transparent;
         padding: 20px 0;
-        transition: var(--transition);
+        transition: background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
         position: fixed; top: 0; left: 0; right: 0;
         z-index: 1000;
     }
     .navbar-glamour.scrolled {
         background: rgba(38, 10, 29, 0.97);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
         padding: 12px 0;
         box-shadow: 0 2px 30px rgba(59,15,43,0.4);
     }
@@ -501,3 +500,61 @@
     
     /* Auth-aware visibility (set by main.js) */
     body:not(.logged-in) [data-auth="in"], body.logged-in [data-auth="out"] { display: none !important; }
+
+
+    /* =========================================================
+       MOBILE + SCROLL FIXES  (added)
+    ========================================================= */
+
+    /* Bootstrap .g-5 uses a 3rem gutter, but .container only has 12px side padding,
+       so on phones every .row.g-5 stuck out 12px each side and made the page wider
+       than the screen. Keep the vertical gap, shrink only the side gutter. */
+    @media (max-width: 767.98px) {
+        .row.g-5, .row.gx-5 { --bs-gutter-x: 1.5rem; }
+    }
+
+    /* AOS fade-left / fade-right slide elements in from 100px outside the screen.
+       On touch devices that stretched the whole page (hamburger + WhatsApp icon went
+       off-screen). Use a vertical fade there instead. */
+    @media (max-width: 991.98px) {
+        [data-aos="fade-left"], [data-aos="fade-right"] { transform: translate3d(0, 30px, 0); }
+    }
+
+    /* Tablet landscape (992-1199px): 7 links + login/book buttons don't fit at full size */
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+        .navbar-brand-glamour { font-size: 1.3rem; letter-spacing: 2px; }
+        .navbar-nav .nav-link { padding: 6px 9px !important; letter-spacing: 1px; font-size: 0.72rem; }
+        .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after { left: 9px; right: 9px; }
+        .btn-navbar-book { padding: 8px 14px !important; letter-spacing: 1px; }
+        .btn-nav-customer, .btn-nav-login { padding: 8px 12px !important; letter-spacing: 1px; }
+        .navbar-nav .nav-item.ms-lg-3, .navbar-nav .nav-item.ms-lg-2 { margin-left: 0.25rem !important; }
+    }
+
+    /* Floating buttons: smaller + tucked in the corner on phones, respect notches */
+    .whatsapp-float { bottom: calc(30px + env(safe-area-inset-bottom, 0px)); right: calc(30px + env(safe-area-inset-right, 0px)); }
+    #scrollTop      { bottom: calc(94px + env(safe-area-inset-bottom, 0px)); right: calc(30px + env(safe-area-inset-right, 0px)); }
+    @media (max-width: 768px) {
+        .whatsapp-float {
+            width: 44px; height: 44px;
+            bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+            right: calc(12px + env(safe-area-inset-right, 0px));
+            animation: none;
+            box-shadow: 0 3px 12px rgba(37,211,102,0.35);
+        }
+        .whatsapp-float i { font-size: 1.3rem; }
+        #scrollTop {
+            width: 36px; height: 36px;
+            bottom: calc(66px + env(safe-area-inset-bottom, 0px));
+            right: calc(16px + env(safe-area-inset-right, 0px));
+        }
+    }
+
+    /* Smoother scrolling: no tap flash, no horizontal swipe jitter */
+    a, button { -webkit-tap-highlight-color: transparent; }
+    body { overscroll-behavior-y: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .whatsapp-float { animation: none; }
+        *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }

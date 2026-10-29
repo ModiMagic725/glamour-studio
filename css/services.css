@@ -35,7 +35,7 @@
 
 /* Book outer */
 .book-outer {
-    width: min(960px,94vw); margin: 0 auto; position: relative;
+    width: min(960px,94vw); margin: 0 0 0 calc(50% - min(480px,47vw)); position: relative; /* stays centred even when wider than its container */
 }
 .book-outer::after {
     content: ''; position: absolute;
@@ -47,7 +47,7 @@
 /* The book */
 #book {
     width: 100%; height: min(600px,66vw);
-    position: relative; touch-action: none; cursor: grab;
+    position: relative; touch-action: pan-y; cursor: grab; /* pan-y: vertical swipes still scroll the page */
     box-shadow:
         0 0 0 1px rgba(196,139,159,.1),
         0 30px 80px rgba(59,15,43,.28),
@@ -342,7 +342,49 @@
     #modalBookBtn { font-size: .68rem !important; padding: 10px !important; }
 }
 @media (max-width: 520px) {
-    .book-outer { width: 99vw; }
+    .book-outer { width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
     #book { height: min(420px,92vw); }
     .ch-index-count { display: none; }
+}
+
+/* ═══════════════════════════════════════════
+   BOOK — compact type for phones (each page is only ~175px wide)
+═══════════════════════════════════════════ */
+@media (max-width: 520px) {
+    .pg-cover { padding: 22px 12px; }
+    .pg-cover::before { inset: 8px; }
+    .cover-ornament { letter-spacing: 6px; margin-bottom: 10px; font-size: .8rem; }
+    .cover-title  { font-size: .95rem; letter-spacing: 3px; }
+    .cover-brand  { font-size: 1.05rem; letter-spacing: 3px; }
+    .cover-sub    { font-size: .66rem; letter-spacing: 1px; margin-bottom: 14px; }
+    .cover-line   { margin-bottom: 12px; }
+    .cover-stats  { gap: 10px; }
+    .cover-stat-val { font-size: 1.05rem; }
+    .cover-stat-lbl { font-size: .4rem; letter-spacing: 1px; }
+    .cover-watermark { font-size: 7rem; }
+    .pg-index { padding: 16px 12px; }
+    .pg-index-header { margin-bottom: 8px; padding-bottom: 8px; }
+    .ch-index-item { gap: 6px; padding: 7px 4px; }
+    .ch-num-pill { display: none; }
+    .ch-index-name { font-size: .8rem; line-height: 1.25; }
+    .pg-svc, .pg-img-split-body { padding-left: 12px; padding-right: 12px; }
+    .svc-title { font-size: .95rem; }
+    .svc-desc  { font-size: .66rem; line-height: 1.6; }
+    .svc-cat-tag { margin-bottom: 5px; letter-spacing: 2px; }
+    .svc-divider { margin-bottom: 7px; }
+    .svc-desc  { margin-bottom: 7px; }
+    .svc-hl { margin-bottom: 4px; }
+    .svc-hl li:nth-child(n+3) { display: none; }   /* page is only ~345px tall on phones */
+    .svc-price-val { font-size: 1rem; }
+    .svc-dur-val   { font-size: .85rem; }
+    .svc-price-lbl, .svc-dur-lbl { font-size: .4rem; letter-spacing: 1.5px; }
+}
+
+/* very small phones (≤360px): taller book, drop the bullet list, tighter index */
+@media (max-width: 360px) {
+    #book { height: 118vw; }
+    .svc-hl { display: none; }
+    .ch-index-item { padding: 5px 4px; }
+    .ch-index-name { font-size: .74rem; }
+    .pg-index-header { margin-bottom: 4px; }
 }

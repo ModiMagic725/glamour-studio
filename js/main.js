@@ -1,5 +1,11 @@
 // AOS
-AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic', offset: 60 });
+AOS.init({
+    duration: window.innerWidth < 768 ? 600 : 800,
+    once: true,
+    easing: 'ease-out-cubic',
+    offset: window.innerWidth < 768 ? 30 : 60,
+    disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+});
 
 // Preloader
 window.addEventListener('load', () => {
@@ -7,13 +13,22 @@ window.addEventListener('load', () => {
     setTimeout(() => { pre.classList.add('hidden'); }, 500);
 });
 
-// Sticky Navbar
-window.addEventListener('scroll', () => {
+// Sticky Navbar + scroll-to-top (passive + one update per frame = smooth scrolling)
+(function () {
     const nav = document.querySelector('.navbar-glamour');
-    nav.classList.toggle('scrolled', window.scrollY > 50);
-    const st = document.getElementById('scrollTop');
-    st.classList.toggle('show', window.scrollY > 400);
-});
+    const st  = document.getElementById('scrollTop');
+    let ticking = false;
+    function update() {
+        const y = window.scrollY;
+        if (nav) nav.classList.toggle('scrolled', y > 50);
+        if (st)  st.classList.toggle('show', y > 400);
+        ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+})();
 
 // Scroll to top
 document.getElementById('scrollTop').addEventListener('click', () => {

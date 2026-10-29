@@ -542,6 +542,11 @@ book.addEventListener('pointerup',e=>{
     }
     requestAnimationFrame(anim);
 });
+// If the browser takes over for a vertical page scroll, finish the flip cleanly
+book.addEventListener('pointercancel',e=>{
+    if(!bk.drag)return;
+    book.dispatchEvent(new PointerEvent('pointerup',{clientX:e.clientX,clientY:e.clientY,pointerId:e.pointerId}));
+});
 
 // ── button nav ──
 function bkNavNext(){if(bk.drag||bk.li+1>=PAGES.length-1)return;bkTurn('right');}
